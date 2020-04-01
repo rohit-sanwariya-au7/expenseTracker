@@ -13,7 +13,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
         accentColor: Colors.amber,
+        fontFamily: 'QuickSand',
+        textTheme:  
+           ThemeData.light().textTheme.copyWith(title:
+           TextStyle(
+             fontFamily: 'OpenSans',
+             fontWeight: FontWeight.bold,
+             fontSize: 17, ),
+             ),
+        appBarTheme: AppBarTheme(
+          textTheme:
+           ThemeData.light().textTheme.copyWith(title:
+           TextStyle(
+             fontFamily: 'OpenSans' ))
+        )
       ),
+      
       debugShowCheckedModeBanner: false,
       title: 'Expense Tracker',
       home: MyHomePage(),
@@ -31,18 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final amountController = TextEditingController();
   final List<Transaction> _userTransaction = [
-    Transaction(
-      id: 't1',
-      title: 'new shoes',
-      amount: 218.10,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't1',
-      title: 'bengan',
-      amount: 999.1,
-      date: DateTime.now(),
-    )
+
   ];
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
