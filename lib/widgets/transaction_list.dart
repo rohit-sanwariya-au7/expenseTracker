@@ -26,7 +26,7 @@ return Card(
                   padding: EdgeInsets.all(10),
                   child: Text(
                     //amaount
-                    '\u20B9 ${transactions[index].amount}',
+                    '\u20B9 ${transactions[index].amount.toStringAsFixed(2)}',
                     style: TextStyle(
                       color: Colors.purple,
                       fontSize: 20,
