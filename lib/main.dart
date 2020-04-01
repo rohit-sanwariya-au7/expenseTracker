@@ -10,6 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        accentColor: Colors.amber,
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Expense Tracker',
       home: MyHomePage(),
@@ -26,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final titleController = TextEditingController();
 
   final amountController = TextEditingController();
-final List<Transaction> _userTransaction = [
+  final List<Transaction> _userTransaction = [
     Transaction(
       id: 't1',
       title: 'new shoes',
@@ -40,29 +44,28 @@ final List<Transaction> _userTransaction = [
       date: DateTime.now(),
     )
   ];
-  void _addNewTransaction(String txTitle,double txAmount){
-        final newTx = Transaction(
-          title: txTitle,
-          amount:  txAmount,
-          date: DateTime.now(),
-          id: DateTime.now().toString()
-          );
+  void _addNewTransaction(String txTitle, double txAmount) {
+    final newTx = Transaction(
+        title: txTitle,
+        amount: txAmount,
+        date: DateTime.now(),
+        id: DateTime.now().toString());
 
-          setState(() {
-            _userTransaction.add(
-              newTx
-            );
-          });
-  }
-  void _startAddNewTransaction(BuildContext context){
-    showModalBottomSheet(context: context, 
-    builder: (_){
-      return GestureDetector(child:
-       NewTransaction(_addNewTransaction),
-       onTap: (){},
-       behavior: HitTestBehavior.opaque,
-       );
+    setState(() {
+      _userTransaction.add(newTx);
     });
+  }
+
+  void _startAddNewTransaction(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return GestureDetector(
+            child: NewTransaction(_addNewTransaction),
+            onTap: () {},
+            behavior: HitTestBehavior.opaque,
+          );
+        });
   }
 
   @override
@@ -71,19 +74,19 @@ final List<Transaction> _userTransaction = [
       appBar: AppBar(
         title: Text('Expense Tracker'),
         actions: <Widget>[
-          IconButton(onPressed: ()=>_startAddNewTransaction(context),icon: Icon(
-            Icons.add,),
+          IconButton(
+            onPressed: () => _startAddNewTransaction(context),
+            icon: Icon(
+              Icons.add,
+            ),
           )
         ],
       ),
-      floatingActionButtonLocation:
-       FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=>_startAddNewTransaction(context),
-      child:Icon(
-        Icons.add),
-        ),
-      
+        onPressed: () => _startAddNewTransaction(context),
+        child: Icon(Icons.add),
+      ),
       body: SingleChildScrollView(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -97,13 +100,10 @@ final List<Transaction> _userTransaction = [
                 elevation: 5, //double value for elevation
               ),
             ),
-             
-          TransactionList(_userTransaction),
+            TransactionList(_userTransaction),
           ],
-
         ),
       ),
-      
     );
   }
 }

@@ -20,7 +20,7 @@ return Card(
                   margin: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
                   decoration: BoxDecoration(
                       border: Border.all(
-                    color: Colors.purple,
+                    color: Colors.grey,
                     width: 1,
                   )),
                   padding: EdgeInsets.all(10),
@@ -28,7 +28,7 @@ return Card(
                     //amaount
                     '\u20B9 ${transactions[index].amount.toStringAsFixed(2)}',
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 20,
                     ),
                   ),
@@ -41,7 +41,7 @@ return Card(
                       transactions[index].title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(255, 127, 80, 1),
+                        color: Colors.purple,
                         fontSize: 18,
                       ),
                     ),
