@@ -25,43 +25,21 @@ class TransactionList extends StatelessWidget {
       ListView.builder(
           itemBuilder: (ctx,index){
 return Card(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
-                  )),
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    //amaount
-                    '\u20B9 ${transactions[index].amount.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      //title
-                      transactions[index].title,
-                      style:Theme.of(context).textTheme.title,
-                    ),
-                    //date
-                    Text(
-                      DateFormat('EE dd-MM-yyyy').format(transactions[index].date),
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          );
+  margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+  child:   ListTile(
+    leading: CircleAvatar(
+      radius: 30,
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: FittedBox(
+          child: Text('\u20B9 ${transactions[index].amount}')),
+      ),),
+      title: Text('${transactions[index].title}',
+      style: Theme.of(context).textTheme.title,
+      ),
+      subtitle: Text(DateFormat.yMMMEd().format(transactions[index].date)),
+  ),
+);
           },
           itemCount: transactions.length,
          
