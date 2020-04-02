@@ -1,6 +1,6 @@
-import 'package:expense/widgets/new_transaction.dart';
+import 'widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
-
+import 'widgets/chart.dart';
 import 'models/transaction.dart';
 import 'widgets/transaction_list.dart';
 
@@ -48,6 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransaction = [
 
   ];
+  List<Transaction> get _recentTransaction{
+     return _userTransaction.where((tx){
+        return tx.date.isAfter(
+          DateTime.now().subtract(Duration(days: 7))
+        );
+     }).toList() ;
+  }
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
         title: txTitle,
@@ -74,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Expense Tracker'),
@@ -96,14 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.red,
-                child: Text('chart'),
-                elevation: 5, //double value for elevation
-              ),
-            ),
+           Chart(_recentTransaction),
             TransactionList(_userTransaction),
           ],
         ),
