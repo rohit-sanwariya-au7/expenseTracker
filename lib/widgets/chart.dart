@@ -40,15 +40,23 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     // print(groupedTransactionValues);
     return Card(
-      child: Row(
-        children: groupedTransactionValues.map((data){
-return ChartBar(
-  data['day'],
-  data['amount'],
-  totalSending==0?0.0:(data['amount'] as double)/totalSending
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(mainAxisAlignment:
+         MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((data)
+        {
+return Flexible(
+  fit: FlexFit.tight,
+  child:   ChartBar(
+    data['day'],
+    data['amount'],
+    totalSending==0?0.0:(data['amount'] as double)/totalSending
+  ),
 );
-      }).toList ()
-      ,),
+        }).toList ()
+        ,),
+      ),
       elevation: 6,
       margin: EdgeInsets.all(10),
 
