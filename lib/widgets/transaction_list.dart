@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-  TransactionList(this.transactions);
+  final Function delTx;
+  TransactionList(this.transactions,this.delTx);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +14,7 @@ class TransactionList extends StatelessWidget {
       
       child: transactions.isEmpty ? Column(
         children: <Widget>[
-          Text('No Transaction',
+          Text('No Transaction,Add One Now',
           style: Theme.of(context).textTheme.title,),
           Divider(height: 20,thickness: .5,),
           Container(height: 200,
@@ -38,6 +39,10 @@ return Card(
       style: Theme.of(context).textTheme.title,
       ),
       subtitle: Text(DateFormat.yMMMEd().format(transactions[index].date)),
+      
+      trailing: IconButton(icon: Icon(Icons.delete),
+      onPressed: ()=> delTx(transactions[index].id),
+      color: Theme.of(context).errorColor,),
   ),
 );
           },
