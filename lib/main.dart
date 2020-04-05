@@ -92,9 +92,7 @@ return tx.id == id;
 
   @override
   Widget build(BuildContext context) {
-    
-    return Scaffold(
-      appBar: AppBar(
+      final appBar = AppBar(
         title: Text('Expense Tracker'),
         actions: <Widget>[
           IconButton(
@@ -104,6 +102,20 @@ return tx.id == id;
             ),
           )
         ],
+      ) ;
+    return Scaffold(
+      appBar: appBar,
+      drawer: Drawer(elevation: 5,
+        child:ListView(children: <Widget>[
+          new UserAccountsDrawerHeader(
+           accountName: Text('Rohit Sanwariya'),
+           accountEmail: Text('rohit@gmail.com'),
+           currentAccountPicture: CircleAvatar(child: Text('Rht'),),
+           ),
+           
+           
+      ],
+      )
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
@@ -115,8 +127,11 @@ return tx.id == id;
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-           Chart(_recentTransaction),
-            TransactionList(_userTransaction,_deleteTransactoin),
+           Container(
+             height: (MediaQuery.of(context).size.height - appBar.preferredSize.height-MediaQuery.of(context).padding.top) *.3,
+             child: Container(child: Chart(_recentTransaction))),
+            Container(height: (MediaQuery.of(context).size.height-appBar.preferredSize.height-MediaQuery.of(context).padding.top)*.7,
+              child: TransactionList(_userTransaction,_deleteTransactoin)),
           ],
         ),
       ),
